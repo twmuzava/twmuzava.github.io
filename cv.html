@@ -59,31 +59,29 @@
       <p class="small">Prefer to talk? <a href="contact.html">Get in touch</a>.</p>
     </div>
     <div class="cv-pages">
-      <article class="cv-sheet cv-text">
-        <header><h2>Takudzwa Wilson Muzavazi</h2><p>GIS &amp; Remote Sensing Analyst · Houghton, MI · (906) 319-9894 · <a href="mailto:twmuzava@mtu.edu">twmuzava@mtu.edu</a> · <a href="https://www.linkedin.com/in/wilsonmuzavazi/">LinkedIn</a></p></header>
-        <h3>Professional summary</h3>
-        <p>GIS and remote sensing analyst with 3 years of experience across railway infrastructure, mining environmental compliance, commercial land-use mapping and wildlife research in Zimbabwe and the United States. Builds field-to-map workflows with ArcGIS Field Maps, GPS and geodatabases, and runs satellite analyses in Google Earth Engine, ArcGIS Pro, QGIS, Python and R. MS in Geographic Information Science, Michigan Technological University (April 2027).</p>
-        <h3>Technical skills</h3>
-        <p><b>GIS &amp; Programming:</b> ArcGIS Pro, QGIS, Google Earth Engine, ArcGIS ModelBuilder, Python (ArcGIS Pro notebooks), R<br><b>Remote Sensing:</b> Landsat, Sentinel-2, MODIS, SAR (RVI, RFDI), NDVI, EVI, MNDWI, NBR/dNBR burn severity, change detection, time-series analysis<br><b>Spatial Analysis &amp; Modelling:</b> Hotspot and kernel density analysis, proximity and buffer analysis, IDW, Empirical Bayesian Kriging, least-cost path, Bayesian habitat suitability modelling<br><b>Data &amp; Field Collection:</b> Geodatabase management, data validation, georeferencing, digitizing, GPS, ArcGIS Field Maps, Open Data Kit (ODK), cartography and thematic mapping</p>
-        <h3>Professional experience</h3>
-        <h4>Michigan Technological University — Research Assistant, Wolf–Moose Project <span>Houghton, MI · Aug 2025 – Present</span></h4>
-        <ul><li>Maintain a geodatabase of 5,000+ moose records, linking skeletal remains, GPS locations and ecological attributes.</li><li>Analyze the spatial distribution of moose remains, including distance to shoreline, using proximity and kernel density analysis in ArcGIS Pro to examine habitat-related mortality.</li><li>Produce maps and visualizations in ArcGIS Pro and R to communicate wildlife distribution patterns.</li></ul>
-        <h4>Map Tech (Pvt) Ltd t/a ZimGeo — GIS Assistant <span>Harare, Zimbabwe · May 2024 – May 2025</span></h4>
-        <ul><li>Georeferenced and digitized historical aerial photographs in QGIS, aligning them with current datasets to measure long-term land-use change.</li><li>Processed Landsat and Sentinel-2 imagery to map agricultural land-use change and mining-related environmental trends that informed planning decisions.</li></ul>
-        <h4>Glenrise — Environmental Assistant <span>Ngezi, Zimbabwe · Feb 2022 – Sep 2022</span></h4>
-        <ul><li>Mapped 125 mining incident records using buffer and kernel density analysis in QGIS, identifying operational risk zones for mine safety planning.</li><li>Prepared 13+ environmental monitoring, compliance and spatial reports and 10 thematic maps, combining geospatial data, field observations and statistical summaries for project stakeholders.</li></ul>
-        <h4>National Railways of Zimbabwe — GIS Intern <span>Harare, Zimbabwe · Jun 2018 – Jul 2019</span></h4>
-        <ul><li>Digitized and mapped 300 km of railway infrastructure from GPS surveys and satellite imagery, building network layers for infrastructure planning and risk assessment.</li><li>Collected and validated derailment-location data, then applied hotspot and spatial pattern analysis in QGIS to identify derailment risk zones for targeted maintenance.</li></ul>
-        <h3>Selected projects</h3>
-        <ul><li><b>Rim Fire Burn Severity &amp; Recovery, California</b> <i>(Google Earth Engine)</i> — Classified burn severity with dNBR and tracked vegetation recovery with NBR at 1, 3 and 5 years after the fire.</li><li><b>Campus Asset Management, Michigan Tech</b> <i>(ArcGIS Field Maps, ArcGIS Pro)</i> — Built a geodatabase of benches, bus stops, potholes, street lights, trash bins and paths from GPS field collection, verified against 3-inch drone imagery.</li><li><b>Grizzly Bear Corridors, Yellowstone to Banff</b> <i>(ArcGIS Pro)</i> — Modelled movement corridors with a least-cost path across a land-cover cost surface, showing where roads and open land raise movement cost.</li><li><b>Snow Depth Interpolation</b> <i>(Python, ArcGIS Pro)</i> — Compared two Empirical Bayesian Kriging methods for snow depth using cross-validation.</li></ul>
-        <h3>Education</h3>
-        <h4>Michigan Technological University — MS, Geographic Information Science <span>Houghton, MI · Expected Apr 2027</span></h4>
-        <ul><li>Coursework: Python for Modern GIS, Applied Spatial Statistics, Remote Sensing of the Environment, Data Science for Environmental Sensing</li></ul>
-        <h4>University of Zimbabwe — BSc, Geographic Information Science and Earth Observation <span>Harare, Zimbabwe · Dec 2020</span></h4>
-        <ul><li>Thesis: Detecting <i>Glycaspis brimblecombei</i> infestation using Sentinel-2 multispectral imagery</li></ul>
-        <h3>Leadership &amp; affiliations</h3>
-        <ul><li><b>GIS Student Volunteer, GIS-Pro 2026</b> (Milwaukee, Oct 2026) — supported workshop delivery for the Cartography and Map Design Boot Camp.</li><li><b>Secretary</b>, African Student Organization, Michigan Tech (2026 – Present) · <b>Member</b>, AAG; Geospatial Professional Network</li></ul>
-      </article>
+      <figure class="cv-sheet" id="cv-view" style="margin:0;background:#fff;min-height:200px"><a href="cv.pdf" style="display:block;padding:2rem;color:#1F4E5F">Open the resume (PDF)</a></figure>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+      <script>
+      (function () {
+        var box = document.getElementById('cv-view');
+        if (!window.pdfjsLib) return;
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+        pdfjsLib.getDocument('cv.pdf').promise.then(function (pdf) {
+          box.innerHTML = '';
+          var chain = Promise.resolve();
+          for (var n = 1; n <= pdf.numPages; n++) (function (n) {
+            chain = chain.then(function () { return pdf.getPage(n); }).then(function (page) {
+              var scale = 2.2, vp = page.getViewport({ scale: scale });
+              var c = document.createElement('canvas'); c.width = vp.width; c.height = vp.height;
+              c.style.width = '100%'; c.style.height = 'auto'; c.style.display = 'block';
+              c.setAttribute('role', 'img'); c.setAttribute('aria-label', 'Resume of Takudzwa Wilson Muzavazi, page ' + n);
+              var a = document.createElement('a'); a.href = 'cv.pdf'; a.appendChild(c); box.appendChild(a);
+              return page.render({ canvasContext: c.getContext('2d'), viewport: vp, intent: 'print' }).promise;
+            });
+          })(n);
+        }).catch(function () {});
+      })();
+      </script>
     </div>
   </div>
 </section>
