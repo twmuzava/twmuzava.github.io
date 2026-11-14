@@ -221,6 +221,8 @@ a { color: inherit; }
   text-shadow: 0 2px 40px rgba(10, 18, 24, 0.25);
 }
 .statement h1 span { color: var(--flag); opacity: 0.85; }
+.statement h1.stack { font-size: clamp(2.2rem, 6.4vw, 6.6rem); line-height: 0.95; }
+@media (max-width: 600px) { .statement h1.stack { font-size: 9.5vw !important; white-space: nowrap; line-height: 1; } }
 @media (max-width: 600px) {
   .statement h1 { white-space: normal; font-size: 23vw !important; line-height: 0.86; }
 }
@@ -329,8 +331,7 @@ a { color: inherit; }
 
     <div class="statement">
       <div class="wrap">
-        <p class="lede">Mapping land and measuring change with satellite imagery and spatial analysis</p>
-        <h1>Read the land<span>.</span></h1>
+        <h1 class="stack">Mapping patterns<span>.</span><br>Measuring change<span>.</span><br>Supporting decisions<span>.</span></h1>
       </div>
     </div>
   </section>
