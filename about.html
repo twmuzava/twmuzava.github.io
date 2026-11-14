@@ -48,6 +48,27 @@
     </div>
   </div>
 </section>
+
+<section class="section" aria-labelledby="mem-h" style="padding-top:0">
+  <div class="wrap">
+    <h2 id="mem-h" class="mem-title">Memberships &amp; affiliations</h2>
+    <ul class="mem">
+      <li><p class="mem-when">October 2026</p><h3>GIS Student Volunteer · GIS-Pro 2026</h3><p>Supported workshop delivery, hands-on activities and certification for the Cartography and Map Design Boot Camp in Milwaukee, Wisconsin.</p></li>
+      <li><p class="mem-when">April 2026 – present</p><h3>Secretary · African Student Organization</h3><p>Michigan Technological University. Helps plan cultural events and community outreach programs on campus.</p></li>
+      <li><p class="mem-when">Member · April 2026 – present</p><h3>Geospatial Professional Network</h3></li>
+      <li><p class="mem-when">Member · April 2026 – present</p><h3>American Association of Geographers</h3></li>
+    </ul>
+  </div>
+</section>
+<style>
+.mem-title { margin: 0 0 1.25rem; padding-top: clamp(2rem, 5vw, 3rem); border-top: 1px solid var(--line); font-family: var(--display); font-weight: 650; font-size: clamp(1.5rem, 2.8vw, 2.1rem); }
+.mem { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.mem li { padding: 1.2rem 1.3rem; background: var(--basalt-2); border: 1px solid var(--line); border-left: 3px solid var(--flag); border-radius: 8px; }
+.mem-when { margin: 0; font-weight: 600; font-size: 0.74rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mist); }
+.mem h3 { margin: 0.35rem 0 0.4rem; font-family: var(--display); font-weight: 650; font-size: 1.1rem; line-height: 1.3; }
+.mem li > p:last-child:not(.mem-when) { margin: 0; color: var(--mist); font-size: 0.95rem; }
+@media (max-width: 620px) { .mem { grid-template-columns: 1fr; } }
+</style>
 </main>
 <footer class="foot">
   <div class="wrap">
