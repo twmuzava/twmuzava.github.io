@@ -41,6 +41,14 @@
 
 <section class="section project-section">
   <div class="wrap">
+    <figure class="plate">
+      <a href="docs/boston-creek.pdf" target="_blank" rel="noopener"><canvas data-pdf="docs/boston-creek.pdf" data-scale="2.2" role="img" aria-label="Modelled streams by stream order and flow accumulation for the Boston Creek watershed" style="display:block;width:100%;height:auto;visibility:hidden"></canvas></a>
+      <figcaption>Modelled streams by stream order, compared with NHD flowlines, and flow accumulation</figcaption>
+    </figure>
+    <figure class="plate tall">
+      <a href="docs/boston-creek-runoff.pdf" target="_blank" rel="noopener"><canvas data-pdf="docs/boston-creek-runoff.pdf" data-scale="2.2" role="img" aria-label="Runoff volume across the Boston Creek watershed with modelled streams" style="display:block;margin:0 auto;max-width:100%;max-height:90vh;width:auto;height:auto;visibility:hidden"></canvas></a>
+      <figcaption>Runoff volume across the watershed</figcaption>
+    </figure>
     <div class="project-body">
       <div class="project-text">
         <!-- KEY FINDING: replace the text below with one sentence on what the map showed
@@ -59,6 +67,14 @@
           <div><dt class="label">Software</dt><dd>ArcGIS Pro</dd></div>
           <div><dt class="label">Methods and data</dt><dd><ul class="tags"><li>Watershed delineation</li><li>DEM</li><li>Flow direction</li><li>Flow accumulation</li><li>Stream order</li><li>NHD flowlines</li><li>Runoff volume</li></ul></dd></div>
         </dl>
+        <a class="download" href="docs/boston-creek.pdf" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M12 11v6"/><path d="m9 14 3 3 3-3"/></svg>
+          <span><strong>Streams and flow accumulation map</strong><small>PDF · 0.6 MB</small></span>
+        </a>
+        <a class="download" href="docs/boston-creek-runoff.pdf" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M12 11v6"/><path d="m9 14 3 3 3-3"/></svg>
+          <span><strong>Runoff volume map</strong><small>PDF · 0.4 MB</small></span>
+        </a>
       </aside>
     </div>
     <nav class="pn-row" aria-label="More projects">
@@ -73,6 +89,28 @@
     </nav>
   </div>
 </section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script>
+(function () {
+  if (!window.pdfjsLib) return;
+  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+  document.querySelectorAll('canvas[data-pdf]').forEach(function (c) {
+    pdfjsLib.getDocument(c.getAttribute('data-pdf')).promise.then(function (pdf) { return pdf.getPage(1); }).then(function (page) {
+      var vp = page.getViewport({ scale: parseFloat(c.getAttribute('data-scale') || '2') });
+      var crop = c.getAttribute('data-crop');
+      var t = crop ? document.createElement('canvas') : c;
+      t.width = vp.width; t.height = vp.height;
+      return page.render({ canvasContext: t.getContext('2d'), viewport: vp, intent: 'print' }).promise.then(function () {
+        if (crop) {
+          var f = crop.split(',').map(Number), sx = f[0] * t.width, sy = f[1] * t.height, sw = f[2] * t.width, sh = f[3] * t.height;
+          c.width = sw; c.height = sh; c.getContext('2d').drawImage(t, sx, sy, sw, sh, 0, 0, sw, sh);
+        }
+        c.style.visibility = 'visible';
+      });
+    }).catch(function () {});
+  });
+})();
+</script>
 </main>
 <footer class="foot">
   <div class="wrap">
